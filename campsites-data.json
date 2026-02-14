@@ -1,0 +1,327 @@
+{
+  "regions": {
+    "scotland": [
+      {
+        "id": "1",
+        "name": "Loch Lomond Retreat",
+        "region": "scotland",
+        "address": "Loch Lomond Road, Balloch, G83 8QX",
+        "what3words": "///lamp.rush.lions",
+        "url": "https://example.com/loch-lomond",
+        "rating": 4.8,
+        "status": "visited",
+        "ehu": true,
+        "openAllYear": false,
+        "openMonths": "March - October",
+        "onsite": [
+          "Shower blocks",
+          "Shop",
+          "Laundry",
+          "Play area",
+          "Chemical disposal",
+          "Fresh water points"
+        ],
+        "nearby": [
+          "Hiking trails",
+          "Water sports on loch",
+          "Village shops and restaurants",
+          "Loch Lomond Shores visitor center"
+        ],
+        "comments": "Stunning views of the loch! Perfect for families. The facilities were spotless and the location couldn't be better for exploring the Highlands.",
+        "latitude": 56.0085,
+        "longitude": -4.5773,
+        "pitchTypes": ["Grass", "Hardstanding"],
+        "petFriendly": true,
+        "priceRange": "££"
+      },
+      {
+        "id": "2",
+        "name": "Highland Haven",
+        "region": "scotland",
+        "address": "Glen Road, Fort William, PH33 6RE",
+        "what3words": "///index.home.raft",
+        "url": "https://example.com/highland-haven",
+        "rating": 5.0,
+        "status": "favorite",
+        "ehu": true,
+        "openAllYear": true,
+        "openMonths": "All year",
+        "onsite": [
+          "Heated shower facilities",
+          "Restaurant",
+          "WiFi",
+          "Dog walking area",
+          "Laundry",
+          "Motorhome service point"
+        ],
+        "nearby": [
+          "Ben Nevis",
+          "Distillery tours",
+          "Fishing",
+          "Fort William town center",
+          "Nevis Range ski resort"
+        ],
+        "comments": "Our absolute favorite! We come back every year. Excellent facilities, friendly staff, and the mountain views are breathtaking.",
+        "latitude": 56.8198,
+        "longitude": -5.1052,
+        "pitchTypes": ["Grass", "Hardstanding", "Serviced"],
+        "petFriendly": true,
+        "priceRange": "£££"
+      },
+      {
+        "id": "3",
+        "name": "Isle of Skye Camping",
+        "region": "scotland",
+        "address": "Portree Road, Isle of Skye, IV51 9LX",
+        "what3words": "///filled.cured.hikes",
+        "url": "https://example.com/skye-camping",
+        "rating": 4.3,
+        "status": "wishlist",
+        "ehu": false,
+        "openAllYear": false,
+        "openMonths": "April - October",
+        "onsite": [
+          "Basic toilet facilities",
+          "Fire pits",
+          "Fresh water",
+          "Chemical disposal"
+        ],
+        "nearby": [
+          "Old Man of Storr",
+          "Fairy Pools",
+          "Coastal walks",
+          "Portree harbor",
+          "Quiraing"
+        ],
+        "comments": "Can't wait to visit! Heard amazing things about the wild camping experience and the views of the Cuillin mountains.",
+        "latitude": 57.4129,
+        "longitude": -6.1956,
+        "pitchTypes": ["Grass"],
+        "petFriendly": true,
+        "priceRange": "£"
+      }
+    ],
+    "wales": [
+      {
+        "id": "4",
+        "name": "Snowdonia Mountain Camp",
+        "region": "wales",
+        "address": "Llanberis, Gwynedd, LL55 4EL",
+        "what3words": "///chiefs.dined.slopes",
+        "url": "https://example.com/snowdonia-camp",
+        "rating": 4.6,
+        "status": "visited",
+        "ehu": true,
+        "openAllYear": false,
+        "openMonths": "March - November",
+        "onsite": [
+          "Heated showers",
+          "Camp shop",
+          "Drying room",
+          "Bike storage",
+          "WiFi lounge"
+        ],
+        "nearby": [
+          "Mount Snowdon",
+          "Zip World",
+          "Slate mines",
+          "Mountain railway",
+          "Llanberis lake"
+        ],
+        "comments": "Perfect base for climbing Snowdon. Really well maintained with great mountain views. Staff very helpful with route advice.",
+        "latitude": 53.1181,
+        "longitude": -4.1278,
+        "pitchTypes": ["Grass", "Hardstanding"],
+        "petFriendly": true,
+        "priceRange": "££"
+      },
+      {
+        "id": "5",
+        "name": "Pembrokeshire Coastal Retreat",
+        "region": "wales",
+        "address": "Tenby Road, Pembrokeshire, SA70 7RG",
+        "what3words": "///boats.shades.cliffs",
+        "url": "https://example.com/pembrokeshire-coast",
+        "rating": 4.9,
+        "status": "favorite",
+        "ehu": true,
+        "openAllYear": true,
+        "openMonths": "All year",
+        "onsite": [
+          "Modern shower blocks",
+          "Heated pool",
+          "Bar and restaurant",
+          "Play area",
+          "Shop",
+          "Laundry"
+        ],
+        "nearby": [
+          "Coastal path",
+          "Tenby beaches",
+          "Boat trips",
+          "Puffin island",
+          "Castle ruins"
+        ],
+        "comments": "Absolutely stunning location right on the coastal path. The beach is a 5-minute walk. Facilities are top-notch.",
+        "latitude": 51.6727,
+        "longitude": -4.7021,
+        "pitchTypes": ["Grass", "Hardstanding", "Serviced"],
+        "petFriendly": true,
+        "priceRange": "£££"
+      }
+    ],
+    "south-west": [
+      {
+        "id": "6",
+        "name": "Cornwall Beach Camping",
+        "region": "south-west",
+        "address": "Perranporth, Cornwall, TR6 0AB",
+        "what3words": "///surfs.sandy.waves",
+        "url": "https://example.com/cornwall-beach",
+        "rating": 4.7,
+        "status": "visited",
+        "ehu": true,
+        "openAllYear": false,
+        "openMonths": "Easter - October",
+        "onsite": [
+          "Shower facilities",
+          "Surf equipment storage",
+          "Small shop",
+          "BBQ area",
+          "Beachside location"
+        ],
+        "nearby": [
+          "Perranporth Beach",
+          "Surf schools",
+          "Coastal walks",
+          "Newquay",
+          "Eden Project (30 min drive)"
+        ],
+        "comments": "Beach access is incredible - just steps from your pitch. Great for surfers and families. Book early for summer!",
+        "latitude": 50.3447,
+        "longitude": -5.1549,
+        "pitchTypes": ["Grass"],
+        "petFriendly": true,
+        "priceRange": "££"
+      },
+      {
+        "id": "7",
+        "name": "Devon Countryside Site",
+        "region": "south-west",
+        "address": "Dartmoor Road, Devon, TQ13 8DY",
+        "what3words": "///ponies.moors.rustic",
+        "url": "https://example.com/devon-country",
+        "rating": 4.4,
+        "status": "wishlist",
+        "ehu": true,
+        "openAllYear": true,
+        "openMonths": "All year",
+        "onsite": [
+          "Basic facilities",
+          "Farm shop",
+          "Fire pits allowed",
+          "Woodland walks",
+          "Wildlife watching"
+        ],
+        "nearby": [
+          "Dartmoor National Park",
+          "Pub within walking distance",
+          "Historic stone circles",
+          "River swimming",
+          "Horse riding"
+        ],
+        "comments": "Looking forward to a quiet, rural escape. Reviews mention seeing wild ponies right by the site!",
+        "latitude": 50.5724,
+        "longitude": -3.7917,
+        "pitchTypes": ["Grass", "Hardstanding"],
+        "petFriendly": true,
+        "priceRange": "£"
+      }
+    ],
+    "south-east": [
+      {
+        "id": "8",
+        "name": "New Forest Escape",
+        "region": "south-east",
+        "address": "Forest Road, Lyndhurst, SO43 7FG",
+        "what3words": "///trees.ponies.forest",
+        "url": "https://example.com/new-forest",
+        "rating": 4.5,
+        "status": "visited",
+        "ehu": true,
+        "openAllYear": true,
+        "openMonths": "All year",
+        "onsite": [
+          "Modern facilities",
+          "Cycle hire",
+          "Dog-friendly areas",
+          "Shop and cafe",
+          "Playground"
+        ],
+        "nearby": [
+          "Forest walks and cycling",
+          "Wild ponies",
+          "Beaulieu Motor Museum",
+          "Coast (20 min drive)",
+          "Lymington"
+        ],
+        "comments": "Beautiful woodland setting. Kids loved seeing the ponies roaming around. Very peaceful and well-maintained.",
+        "latitude": 50.8714,
+        "longitude": -1.5725,
+        "pitchTypes": ["Grass", "Hardstanding"],
+        "petFriendly": true,
+        "priceRange": "££"
+      }
+    ],
+    "north-west": [
+      {
+        "id": "9",
+        "name": "Lake District Paradise",
+        "region": "north-west",
+        "address": "Windermere Road, Cumbria, LA23 1LF",
+        "what3words": "///lakes.peaks.views",
+        "url": "https://example.com/lake-district",
+        "rating": 4.9,
+        "status": "favorite",
+        "ehu": true,
+        "openAllYear": false,
+        "openMonths": "March - October",
+        "onsite": [
+          "Luxury shower blocks",
+          "Restaurant",
+          "Lakeside pitches",
+          "Boat launch",
+          "Shop",
+          "Drying facilities"
+        ],
+        "nearby": [
+          "Lake Windermere",
+          "Scafell Pike",
+          "Beatrix Potter Museum",
+          "Steam railway",
+          "Mountain biking trails"
+        ],
+        "comments": "Best campsite we've ever stayed at. Lakeside location is magical at sunrise. Worth every penny!",
+        "latitude": 54.3800,
+        "longitude": -2.9093,
+        "pitchTypes": ["Grass", "Hardstanding", "Lakeside Premium"],
+        "petFriendly": true,
+        "priceRange": "£££"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2026-02-14",
+    "totalCampsites": 9,
+    "priceGuide": {
+      "£": "Budget (Under £20/night)",
+      "££": "Mid-range (£20-35/night)",
+      "£££": "Premium (£35+/night)"
+    },
+    "statusTypes": {
+      "visited": "Places you've been to",
+      "favorite": "Your top picks",
+      "wishlist": "Places you want to visit"
+    }
+  }
+}

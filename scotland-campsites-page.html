@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scotland Campsites - UK Campsite Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --forest-dark: #1a3e2f;
+            --forest-mid: #2d5f4d;
+            --moss: #7da87b;
+            --sage: #b8c5b0;
+            --cream: #f5f3ed;
+            --earth: #8b6f47;
+            --sunset: #d97652;
+            --water: #6b9fb5;
+        }
+
+        body {
+            font-family: 'Cabin', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #e8e3d6 100%);
+            color: var(--forest-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--forest-mid);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(45, 95, 77, 0.2);
+        }
+
+        .back-button:hover {
+            background: var(--forest-dark);
+            transform: translateX(-5px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-mid) 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(26, 62, 47, 0.2);
+        }
+
+        h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 3em;
+            color: var(--cream);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: var(--sage);
+            font-size: 1.2em;
+        }
+
+        .filters {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            color: var(--forest-mid);
+        }
+
+        select, input[type="checkbox"] {
+            padding: 8px 15px;
+            border: 2px solid var(--sage);
+            border-radius: 8px;
+            font-family: 'Cabin', sans-serif;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: var(--moss);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 8px 15px;
+            background: var(--cream);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label:hover {
+            background: var(--sage);
+        }
+
+        .campsites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .campsite-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 5px solid var(--moss);
+        }
+
+        .campsite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .badge-visited { background: var(--water); }
+        .badge-favorite { background: var(--sunset); }
+        .badge-wishlist { background: var(--earth); }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .campsite-name {
+            font-family: 'Merriweather', serif;
+            font-size: 1.6em;
+            color: var(--forest-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .stars {
+            color: #f4b400;
+            font-weight: bold;
+        }
+
+        .rating-number {
+            color: var(--forest-mid);
+            font-weight: 600;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .info-icon {
+            color: var(--moss);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .info-text {
+            color: var(--forest-mid);
+            line-height: 1.5;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            background: var(--cream);
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--forest-mid);
+            border: 1px solid var(--sage);
+        }
+
+        .tag.ehu {
+            background: #e3f2fd;
+            border-color: var(--water);
+            color: var(--water);
+        }
+
+        .tag.year-round {
+            background: #fff3e0;
+            border-color: var(--earth);
+            color: var(--earth);
+        }
+
+        .what3words {
+            background: #e53935;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .what3words:hover {
+            background: #c62828;
+            transform: translateY(-2px);
+        }
+
+        .comments {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--cream);
+            border-radius: 10px;
+            font-style: italic;
+            color: var(--forest-mid);
+            border-left: 4px solid var(--moss);
+        }
+
+        .card-footer {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--cream) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .visit-link {
+            padding: 10px 20px;
+            background: var(--forest-mid);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .visit-link:hover {
+            background: var(--forest-dark);
+            transform: scale(1.05);
+        }
+
+        .facilities {
+            margin-top: 15px;
+        }
+
+        .facilities h4 {
+            color: var(--forest-mid);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .facility-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .facility-item {
+            font-size: 0.85em;
+            color: var(--forest-dark);
+            background: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--sage);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .campsites-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">← Back to Map</a>
+
+        <header>
+            <h1>🏴 Scotland Campsites</h1>
+            <p class="subtitle">Discover the best camping spots in Scotland</p>
+        </header>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="rating">Rating</option>
+                    <option value="name">Name</option>
+                    <option value="status">Status</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="filter-status">Show:</label>
+                <select id="filter-status">
+                    <option value="all">All Campsites</option>
+                    <option value="visited">Visited Only</option>
+                    <option value="favorite">Favorites Only</option>
+                    <option value="wishlist">Wishlist Only</option>
+                </select>
+            </div>
+
+            <label class="checkbox-label">
+                <input type="checkbox" id="ehu-only">
+                <span>EHU Only</span>
+            </label>
+
+            <label class="checkbox-label">
+                <input type="checkbox" id="year-round-only">
+                <span>Open Year Round</span>
+            </label>
+        </div>
+
+        <div class="campsites-grid" id="campsites-container">
+            <!-- Sample Campsite Card 1 -->
+            <div class="campsite-card" data-status="visited" data-ehu="true" data-year-round="false" data-rating="4.8">
+                <div class="card-badge badge-visited"></div>
+                <div class="card-content">
+                    <h2 class="campsite-name">Loch Lomond Retreat</h2>
+                    
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-number">4.8</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-icon">📍</span>
+                        <span class="info-text">Loch Lomond Road, Balloch, G83 8QX</span>
+                    </div>
+
+                    <a href="https://w3w.co/lamp.rush.lions" class="what3words" target="_blank">
+                        ///lamp.rush.lions
+                    </a>
+
+                    <div class="tags">
+                        <span class="tag ehu">⚡ EHU Available</span>
+                        <span class="tag">🌧️ Seasonal</span>
+                    </div>
+
+                    <div class="facilities">
+                        <h4>On Site:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Shower blocks</span>
+                            <span class="facility-item">Shop</span>
+                            <span class="facility-item">Laundry</span>
+                            <span class="facility-item">Play area</span>
+                        </div>
+                    </div>
+
+                    <div class="facilities" style="margin-top: 10px;">
+                        <h4>Nearby Activities:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Hiking trails</span>
+                            <span class="facility-item">Water sports</span>
+                            <span class="facility-item">Village shops</span>
+                        </div>
+                    </div>
+
+                    <div class="comments">
+                        "Stunning views of the loch! Perfect for families. The facilities were spotless and the location couldn't be better for exploring the Highlands."
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="https://example.com/loch-lomond" target="_blank" class="visit-link">Visit Website →</a>
+                </div>
+            </div>
+
+            <!-- Sample Campsite Card 2 -->
+            <div class="campsite-card" data-status="favorite" data-ehu="true" data-year-round="true" data-rating="5.0">
+                <div class="card-badge badge-favorite"></div>
+                <div class="card-content">
+                    <h2 class="campsite-name">Highland Haven</h2>
+                    
+                    <div class="rating">
+                        <span class="stars">★★★★★</span>
+                        <span class="rating-number">5.0</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-icon">📍</span>
+                        <span class="info-text">Glen Road, Fort William, PH33 6RE</span>
+                    </div>
+
+                    <a href="https://w3w.co/index.home.raft" class="what3words" target="_blank">
+                        ///index.home.raft
+                    </a>
+
+                    <div class="tags">
+                        <span class="tag ehu">⚡ EHU Available</span>
+                        <span class="tag year-round">📅 Open All Year</span>
+                    </div>
+
+                    <div class="facilities">
+                        <h4>On Site:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Heated facilities</span>
+                            <span class="facility-item">Restaurant</span>
+                            <span class="facility-item">WiFi</span>
+                            <span class="facility-item">Dog walking area</span>
+                        </div>
+                    </div>
+
+                    <div class="facilities" style="margin-top: 10px;">
+                        <h4>Nearby Activities:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Ben Nevis</span>
+                            <span class="facility-item">Distillery tours</span>
+                            <span class="facility-item">Fishing</span>
+                        </div>
+                    </div>
+
+                    <div class="comments">
+                        "Our absolute favorite! We come back every year. Excellent facilities, friendly staff, and the mountain views are breathtaking."
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="https://example.com/highland-haven" target="_blank" class="visit-link">Visit Website →</a>
+                </div>
+            </div>
+
+            <!-- Sample Campsite Card 3 -->
+            <div class="campsite-card" data-status="wishlist" data-ehu="false" data-year-round="false" data-rating="4.3">
+                <div class="card-badge badge-wishlist"></div>
+                <div class="card-content">
+                    <h2 class="campsite-name">Isle of Skye Camping</h2>
+                    
+                    <div class="rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="rating-number">4.3</span>
+                    </div>
+
+                    <div class="info-row">
+                        <span class="info-icon">📍</span>
+                        <span class="info-text">Portree Road, Isle of Skye, IV51 9LX</span>
+                    </div>
+
+                    <a href="https://w3w.co/filled.cured.hikes" class="what3words" target="_blank">
+                        ///filled.cured.hikes
+                    </a>
+
+                    <div class="tags">
+                        <span class="tag">🔌 No EHU</span>
+                        <span class="tag">🌞 Apr-Oct</span>
+                    </div>
+
+                    <div class="facilities">
+                        <h4>On Site:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Basic facilities</span>
+                            <span class="facility-item">Fire pits</span>
+                            <span class="facility-item">Fresh water</span>
+                        </div>
+                    </div>
+
+                    <div class="facilities" style="margin-top: 10px;">
+                        <h4>Nearby Activities:</h4>
+                        <div class="facility-list">
+                            <span class="facility-item">Old Man of Storr</span>
+                            <span class="facility-item">Fairy Pools</span>
+                            <span class="facility-item">Coastal walks</span>
+                        </div>
+                    </div>
+
+                    <div class="comments">
+                        "Can't wait to visit! Heard amazing things about the wild camping experience and the views of the Cuillin mountains."
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="https://example.com/skye-camping" target="_blank" class="visit-link">Visit Website →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Filter and sort functionality
+        const container = document.getElementById('campsites-container');
+        const cards = Array.from(container.getElementsByClassName('campsite-card'));
+        
+        const sortSelect = document.getElementById('sort');
+        const filterSelect = document.getElementById('filter-status');
+        const ehuCheckbox = document.getElementById('ehu-only');
+        const yearRoundCheckbox = document.getElementById('year-round-only');
+
+        function applyFilters() {
+            const sortBy = sortSelect.value;
+            const filterStatus = filterSelect.value;
+            const ehuOnly = ehuCheckbox.checked;
+            const yearRoundOnly = yearRoundCheckbox.checked;
+
+            // Filter cards
+            cards.forEach(card => {
+                let show = true;
+
+                // Status filter
+                if (filterStatus !== 'all' && card.dataset.status !== filterStatus) {
+                    show = false;
+                }
+
+                // EHU filter
+                if (ehuOnly && card.dataset.ehu !== 'true') {
+                    show = false;
+                }
+
+                // Year round filter
+                if (yearRoundOnly && card.dataset.yearRound !== 'true') {
+                    show = false;
+                }
+
+                card.style.display = show ? 'block' : 'none';
+            });
+
+            // Sort visible cards
+            const visibleCards = cards.filter(card => card.style.display !== 'none');
+            
+            visibleCards.sort((a, b) => {
+                if (sortBy === 'rating') {
+                    return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+                } else if (sortBy === 'name') {
+                    const nameA = a.querySelector('.campsite-name').textContent;
+                    const nameB = b.querySelector('.campsite-name').textContent;
+                    return nameA.localeCompare(nameB);
+                } else if (sortBy === 'status') {
+                    const statusOrder = { favorite: 0, visited: 1, wishlist: 2 };
+                    return statusOrder[a.dataset.status] - statusOrder[b.dataset.status];
+                }
+                return 0;
+            });
+
+            // Re-append in sorted order
+            visibleCards.forEach(card => container.appendChild(card));
+        }
+
+        // Add event listeners
+        sortSelect.addEventListener('change', applyFilters);
+        filterSelect.addEventListener('change', applyFilters);
+        ehuCheckbox.addEventListener('change', applyFilters);
+        yearRoundCheckbox.addEventListener('change', applyFilters);
+
+        // Initial sort
+        applyFilters();
+    </script>
+</body>
+</html>
